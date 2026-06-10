@@ -65,7 +65,7 @@ const VideoCard = ({ src, rotate, title, index, poster }: { src: string, rotate:
 
 export const BeachClubIntro: React.FC = () => {
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_BACK_URL || 'http://localhost:4000';
+    const apiUrl = process.env.NEXT_PUBLIC_API_BACK_URL;
 
     const carouselImages = [
         { 
