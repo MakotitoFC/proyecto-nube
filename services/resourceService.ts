@@ -1,3 +1,4 @@
+import { authenticatedFetch } from './api';
 const API_URL = process.env.NEXT_PUBLIC_API_BACK_URL;
 
 export interface ResourceCategory {
@@ -88,20 +89,17 @@ export async function deleteResourceCategory(token: string, id: string): Promise
     }
 }
 
+
 export async function getBeachClubResources(token: string): Promise<Resource[]> {
-    console.log('📡 Calling Beach Club API:', `${API_URL}/resources/beach-club`);
-    const response = await fetch(`${API_URL}/resources/beach-club`, {
+    const response = await authenticatedFetch(`/resources/beach-club`, {
         headers: {
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
         },
     });
 
-    console.log('📊 Response status:', response.status);
-
     if (!response.ok) {
         const errorText = await response.text();
-        console.error('❌ API Error:', response.status, errorText);
-        throw new Error(`Failed to fetch beach club resources: ${response.status}`);
+        throw new Error(`Failed: ${response.status} - ${errorText}`);
     }
 
     return response.json();

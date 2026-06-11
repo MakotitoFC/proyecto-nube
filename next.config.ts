@@ -13,6 +13,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/proxy/:path*',
+        destination: 'http://pelicanos-backend-env.eba-uzzr6qa2.us-east-1.elasticbeanstalk.com/:path*',
+      },
+    ];
+  },
   async headers() {
     return [
       {
