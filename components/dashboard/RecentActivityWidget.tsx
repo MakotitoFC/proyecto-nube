@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_BACK_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_BACK_URL || 'http://localhost:4000';
 
 interface Activity {
     id: string;

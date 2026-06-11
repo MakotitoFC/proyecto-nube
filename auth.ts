@@ -1,8 +1,11 @@
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 
-const API_URL = process.env.NEXT_PUBLIC_API_BACK_URL;
-
+const API_URL = process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_API_BACK_URL || 'http://localhost:4000';
+// Cambia la línea 4 para que quede exactamente así:
+//const API_URL = typeof window !== "undefined" 
+ // ? "/api" 
+ // : (process.env.INTERNAL_API_URL || "http://veracruz-back:4000");
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [
         Credentials({

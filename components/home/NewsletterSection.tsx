@@ -16,7 +16,7 @@ export const NewsletterSection: React.FC = () => {
     setIsSubmitting(true);
     setError(null);
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_BACK_URL;
+      const apiUrl = process.env.NEXT_PUBLIC_API_BACK_URL || 'http://localhost:4000';
       const response = await fetch(`${apiUrl}/newsletter/subscribe`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

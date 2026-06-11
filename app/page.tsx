@@ -10,6 +10,7 @@ import { NewsletterSection } from '@/components/home/NewsletterSection';
 import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { ConceptSection } from '@/components/home/ConceptSection';
+import { Chatbot } from '@/components/Chatbot';
 
 export default function HomePage() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -25,6 +26,7 @@ export default function HomePage() {
       </div>
       <TestimonialsSection />
 
+      <Chatbot />
     </div>
   );
-}
+}
