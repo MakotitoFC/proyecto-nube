@@ -67,21 +67,21 @@ export const BeachClubIntro: React.FC = () => {
 
     const carouselImages = [
         {
-            src: `/api/proxy/minio/view/${encodeURIComponent("Zona Playa.webm")}`,
+            src: `/api/video?file=${encodeURIComponent("Zona Playa.webm")}`,
             rotate: 'rotate-2',
             z: 10,
             title: "ZONA PLAYA",
             poster: "/home/beach-club/mock/Playa_1.webp"
         },
         {
-            src: `/api/proxy/minio/view/${encodeURIComponent("Zona Alberca.webm")}`,
+            src: `/api/video?file=${encodeURIComponent("Zona Alberca.webm")}`,
             rotate: '-rotate-1',
             z: 20,
             title: "ZONA ALBERCA",
             poster: "/home/beach-club/mock/Alberca_1.webp"
         },
         {
-            src: `/api/proxy/minio/view/${encodeURIComponent("Zona Lounge.webm")}`,
+            src: `/api/video?file=${encodeURIComponent("Zona Lounge.webm")}`,
             rotate: 'rotate-3',
             z: 10,
             title: "ZONA LOUNGE VIP",
