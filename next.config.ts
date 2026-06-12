@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/proxy/:path*',
-        destination: 'http://pelicanos-backend-env.eba-uzzr6qa2.us-east-1.elasticbeanstalk.com/:path*',
+        destination: 'http://pelicanos-backend-env-1.eba-uzzr6qa2.us-east-1.elasticbeanstalk.com/:path*',
       },
     ];
   },

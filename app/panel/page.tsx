@@ -43,7 +43,7 @@ export default function DashboardPage() {
                 const startStr = dateRange.start.toISOString().split('T')[0];
                 const endStr = dateRange.end.toISOString().split('T')[0];
 
-                const apiUrl = process.env.NEXT_PUBLIC_API_BACK_URL || 'http://localhost:4000';
+                const apiUrl = process.env.NEXT_PUBLIC_API_BACK_URL;
                 const response = await fetch(`${apiUrl}/bookings/stats?startDate=${startStr}&endDate=${endStr}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`

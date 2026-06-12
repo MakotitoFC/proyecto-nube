@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_BACK_URL || 'http://localhost:4000';
+const API_URL = process.env.NEXT_PUBLIC_API_BACK_URL;
 
 export interface ResourceCategory {
     id: string;
