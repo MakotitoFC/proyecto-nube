@@ -5,20 +5,17 @@ export default auth((req) => {
     const isLoggedIn = !!req.auth
     const { pathname } = req.nextUrl
 
-    if (pathname === '/login') {
-        if (isLoggedIn) return NextResponse.redirect(new URL('/panel', req.url))
-        return
-    }
-
-    if (pathname === '/') {
-        return NextResponse.redirect(new URL(isLoggedIn ? '/panel' : '/login', req.url))
-    }
-
+    // Panel sin sesión → login
     if (pathname.startsWith('/panel') && !isLoggedIn) {
         return NextResponse.redirect(new URL('/login', req.url))
+    }
+
+    // Login con sesión activa → panel
+    if (pathname === '/login' && isLoggedIn) {
+        return NextResponse.redirect(new URL('/panel', req.url))
     }
 })
 
 export const config = {
-    matcher: ['/', '/login', '/panel/:path*'],
+    matcher: ['/panel/:path*', '/login'],
 }
