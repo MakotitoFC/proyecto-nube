@@ -1,21 +1,24 @@
 import { auth } from "@/auth"
 import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
 
 export default auth((req) => {
     const isLoggedIn = !!req.auth
-    const isOnPanel = req.nextUrl.pathname.startsWith('/panel')
-    const isOnLogin = req.nextUrl.pathname.startsWith('/login')
+    const { pathname } = req.nextUrl
 
-    if (isOnPanel && !isLoggedIn) {
-        return NextResponse.redirect(new URL('/login', req.url))
+    if (pathname === '/login') {
+        if (isLoggedIn) return NextResponse.redirect(new URL('/panel', req.url))
+        return
     }
 
-    if (isOnLogin && isLoggedIn) {
-        return NextResponse.redirect(new URL('/panel', req.url))
+    if (pathname === '/') {
+        return NextResponse.redirect(new URL(isLoggedIn ? '/panel' : '/login', req.url))
+    }
+
+    if (pathname.startsWith('/panel') && !isLoggedIn) {
+        return NextResponse.redirect(new URL('/login', req.url))
     }
 })
 
 export const config = {
-    matcher: ['/panel/:path*', '/login'],
+    matcher: ['/', '/login', '/panel/:path*'],
 }
