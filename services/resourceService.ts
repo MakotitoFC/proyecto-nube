@@ -21,7 +21,7 @@ export interface Resource {
 }
 
 export async function getResourceCategories(token: string, type?: string): Promise<ResourceCategory[]> {
-    const url = type ? `${API_URL}/resource-categories?type=${type}` : `${API_URL}/resource-categories`;
+    const url = type ? `/api/proxy/resource-categories?type=${type}` : `/api/proxy/resource-categories`;
     const response = await fetch(url, {
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -42,7 +42,7 @@ export async function getResourceCategories(token: string, type?: string): Promi
 }
 
 export async function createResourceCategory(token: string, data: Omit<ResourceCategory, 'id'>): Promise<ResourceCategory> {
-    const response = await fetch(`${API_URL}/resource-categories`, {
+    const response = await fetch(`/api/proxy/resource-categories`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -59,7 +59,7 @@ export async function createResourceCategory(token: string, data: Omit<ResourceC
 }
 
 export async function updateResourceCategory(token: string, id: string, data: Partial<ResourceCategory>): Promise<ResourceCategory> {
-    const response = await fetch(`${API_URL}/resource-categories/${id}`, {
+    const response = await fetch(`/api/proxy/resource-categories/${id}`, {
         method: 'PATCH',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -76,7 +76,7 @@ export async function updateResourceCategory(token: string, id: string, data: Pa
 }
 
 export async function deleteResourceCategory(token: string, id: string): Promise<void> {
-    const response = await fetch(`${API_URL}/resource-categories/${id}`, {
+    const response = await fetch(`/api/proxy/resource-categories/${id}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -89,8 +89,8 @@ export async function deleteResourceCategory(token: string, id: string): Promise
 }
 
 export async function getBeachClubResources(token: string): Promise<Resource[]> {
-    console.log('📡 Calling Beach Club API:', `${API_URL}/resources/beach-club`);
-    const response = await fetch(`${API_URL}/resources/beach-club`, {
+    console.log('📡 Calling Beach Club API:', `/api/proxy/resources/beach-club`);
+    const response = await fetch(`/api/proxy/resources/beach-club`, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -108,7 +108,7 @@ export async function getBeachClubResources(token: string): Promise<Resource[]> 
 }
 
 export async function getHotelResources(token: string): Promise<Resource[]> {
-    const response = await fetch(`${API_URL}/resources/hotel`, {
+    const response = await fetch(`/api/proxy/resources/hotel`, {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -132,7 +132,7 @@ export async function getAllResources(
     if (category) params.append('category', category);
     if (status) params.append('status', status);
 
-    const url = `${API_URL}/resources${params.toString() ? `?${params.toString()}` : ''}`;
+    const url = `/api/proxy/resources${params.toString() ? `?${params.toString()}` : ''}`;
 
     const response = await fetch(url, {
         headers: {
@@ -148,7 +148,7 @@ export async function getAllResources(
 }
 
 export async function createResource(token: string, data: Omit<Resource, 'id' | 'createdAt' | 'updatedAt' | 'category'>): Promise<Resource> {
-    const response = await fetch(`${API_URL}/resources`, {
+    const response = await fetch(`/api/proxy/resources`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -165,7 +165,7 @@ export async function createResource(token: string, data: Omit<Resource, 'id' | 
 }
 
 export async function updateResource(token: string, id: string, data: Partial<Resource>): Promise<Resource> {
-    const response = await fetch(`${API_URL}/resources/${id}`, {
+    const response = await fetch(`/api/proxy/resources/${id}`, {
         method: 'PATCH',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -182,7 +182,7 @@ export async function updateResource(token: string, id: string, data: Partial<Re
 }
 
 export async function deleteResource(token: string, id: string): Promise<void> {
-    const response = await fetch(`${API_URL}/resources/${id}`, {
+    const response = await fetch(`/api/proxy/resources/${id}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`,

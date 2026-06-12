@@ -15,7 +15,7 @@ export interface CreateBookingData {
 }
 
 export async function createBooking(data: CreateBookingData) {
-    const response = await fetch(`${API_URL}/bookings`, {
+    const response = await fetch(`/api/proxy/bookings`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -33,8 +33,8 @@ export async function createBooking(data: CreateBookingData) {
 
 export async function getOccupiedIds(date: string, endDate?: string): Promise<string[]> {
     const url = endDate
-        ? `${API_URL}/bookings/occupied-ids?date=${date}&endDate=${endDate}`
-        : `${API_URL}/bookings/occupied-ids?date=${date}`;
+        ? `/api/proxy/bookings/occupied-ids?date=${date}&endDate=${endDate}`
+        : `/api/proxy/bookings/occupied-ids?date=${date}`;
     const response = await fetch(url);
     if (!response.ok) {
         throw new Error('Failed to fetch occupied IDs');
@@ -42,7 +42,7 @@ export async function getOccupiedIds(date: string, endDate?: string): Promise<st
     return response.json();
 }
 export async function createAdminBooking(token: string, data: CreateBookingData) {
-    const response = await fetch(`${API_URL}/bookings/panel`, {
+    const response = await fetch(`/api/proxy/bookings/panel`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export async function createAdminBooking(token: string, data: CreateBookingData)
 }
 
 export async function updateBooking(token: string, id: string, data: Partial<CreateBookingData>) {
-    const response = await fetch(`${API_URL}/bookings/${id}`, {
+    const response = await fetch(`/api/proxy/bookings/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ export async function updateBooking(token: string, id: string, data: Partial<Cre
 }
 
 export async function getAllBookings(token: string): Promise<any[]> {
-    const response = await fetch(`${API_URL}/bookings`, {
+    const response = await fetch(`/api/proxy/bookings`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }

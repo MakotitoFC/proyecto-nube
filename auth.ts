@@ -21,7 +21,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         return null; // Retornar null dispara el CredentialsSignin internamente
                     }
 
-                    const res = await fetch(`${API_URL}/auth/login`, {
+                    const res = await fetch(`/api/proxy/auth/login`, {
                         method: "POST",
                         body: JSON.stringify({
                             email: credentials.email,

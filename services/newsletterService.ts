@@ -7,7 +7,7 @@ export interface Subscriber {
 }
 
 export async function getSubscribers(token: string): Promise<Subscriber[]> {
-    const response = await fetch(`${API_URL}/newsletter`, {
+    const response = await fetch(`/api/proxy/newsletter`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }

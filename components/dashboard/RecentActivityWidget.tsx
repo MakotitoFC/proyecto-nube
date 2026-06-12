@@ -54,7 +54,7 @@ export const RecentActivityWidget: React.FC<RecentActivityWidgetProps> = ({ toke
 
         const fetchActivities = async () => {
             try {
-                const res = await fetch(`${API_URL}/panel/activities`, {
+                const res = await fetch(`/api/proxy/panel/activities`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 if (res.ok) {
@@ -123,7 +123,7 @@ export const RecentActivityWidget: React.FC<RecentActivityWidgetProps> = ({ toke
 // Re-export the fetch logic so PanelHeader can use it too
 export async function fetchRecentActivities(token: string): Promise<Activity[]> {
     try {
-        const res = await fetch(`${API_URL}/panel/activities`, {
+        const res = await fetch(`/api/proxy/panel/activities`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         if (res.ok) return res.json();
@@ -133,7 +133,7 @@ export async function fetchRecentActivities(token: string): Promise<Activity[]> 
 
 export async function markActivityAsRead(token: string, id: string): Promise<void> {
     try {
-        await fetch(`${API_URL}/panel/activities/${id}/read`, {
+        await fetch(`/api/proxy/panel/activities/${id}/read`, {
             method: 'PATCH',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -142,7 +142,7 @@ export async function markActivityAsRead(token: string, id: string): Promise<voi
 
 export async function markAllActivitiesAsRead(token: string): Promise<void> {
     try {
-        await fetch(`${API_URL}/panel/activities/read-all`, {
+        await fetch(`/api/proxy/panel/activities/read-all`, {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${token}` }
         });
