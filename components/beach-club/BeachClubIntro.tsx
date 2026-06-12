@@ -65,29 +65,27 @@ const VideoCard = ({ src, rotate, title, index, poster }: { src: string, rotate:
 
 export const BeachClubIntro: React.FC = () => {
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_BACK_URL;
-
     const carouselImages = [
-        { 
-            src: `${apiUrl}/minio/view/${encodeURIComponent("Zona Playa.webm")}`, 
-            rotate: 'rotate-2', 
-            z: 10, 
-            title: "ZONA PLAYA", 
-            poster: "/home/beach-club/mock/Playa_1.webp" 
+        {
+            src: `/api/proxy/minio/view/${encodeURIComponent("Zona Playa.webm")}`,
+            rotate: 'rotate-2',
+            z: 10,
+            title: "ZONA PLAYA",
+            poster: "/home/beach-club/mock/Playa_1.webp"
         },
-        { 
-            src: `${apiUrl}/minio/view/${encodeURIComponent("Zona Alberca.webm")}`, 
-            rotate: '-rotate-1', 
-            z: 20, 
-            title: "ZONA ALBERCA", 
-            poster: "/home/beach-club/mock/Alberca_1.webp" 
+        {
+            src: `/api/proxy/minio/view/${encodeURIComponent("Zona Alberca.webm")}`,
+            rotate: '-rotate-1',
+            z: 20,
+            title: "ZONA ALBERCA",
+            poster: "/home/beach-club/mock/Alberca_1.webp"
         },
-        { 
-            src: `${apiUrl}/minio/view/${encodeURIComponent("Zona Lounge.webm")}`, 
-            rotate: 'rotate-3', 
-            z: 10, 
-            title: "ZONA LOUNGE VIP", 
-            poster: "/home/beach-club/mock/Lounge_1.webp" 
+        {
+            src: `/api/proxy/minio/view/${encodeURIComponent("Zona Lounge.webm")}`,
+            rotate: 'rotate-3',
+            z: 10,
+            title: "ZONA LOUNGE VIP",
+            poster: "/home/beach-club/mock/Lounge_1.webp"
         },
     ];
     const staggerContainer: Variants = {
