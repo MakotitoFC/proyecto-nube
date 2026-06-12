@@ -1,11 +1,11 @@
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 
-const API_URL = process.env.INTERNAL_API_URL || process.env.NEXT_PUBLIC_API_BACK_URL;
-// Cambia la línea 4 para que quede exactamente así:
-//const API_URL = typeof window !== "undefined" 
- // ? "/api" 
- // : (process.env.INTERNAL_API_URL || "http://veracruz-back:4000");
+const BACKEND_URL =
+    process.env.INTERNAL_API_URL ||
+    process.env.NEXT_PUBLIC_API_BACK_URL ||
+    'http://pelicanos-backend-env-1.eba-uzzr6qa2.us-east-1.elasticbeanstalk.com'
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [
         Credentials({
@@ -18,10 +18,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             authorize: async (credentials) => {
                 try {
                     if (!credentials?.email || !credentials?.password) {
-                        return null; // Retornar null dispara el CredentialsSignin internamente
+                        return null;
                     }
 
-                    const res = await fetch(`/api/proxy/auth/login`, {
+                    const res = await fetch(`${BACKEND_URL}/auth/login`, {
                         method: "POST",
                         body: JSON.stringify({
                             email: credentials.email,
