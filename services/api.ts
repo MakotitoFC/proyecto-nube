@@ -1,6 +1,6 @@
 import { signOut } from "next-auth/react";
 
-export const API_URL = process.env.NEXT_PUBLIC_API_BACK_URL;
+export const API_URL = '/api/proxy/';
 
 export async function authenticatedFetch(path: string, options: RequestInit = {}) {
     const url = path.startsWith('http') ? path : `${API_URL}${path}`;
