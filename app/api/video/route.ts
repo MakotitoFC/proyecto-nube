@@ -1,5 +1,8 @@
 import { NextRequest } from 'next/server'
 
+// Edge runtime: streaming real sin límite de tamaño (Vercel Hobby compatible)
+export const runtime = 'edge'
+
 const BACKEND_URL = 'http://pelicanos-backend-env-1.eba-uzzr6qa2.us-east-1.elasticbeanstalk.com'
 
 export async function GET(request: NextRequest) {
